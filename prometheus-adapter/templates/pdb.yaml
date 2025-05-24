@@ -16,6 +16,7 @@ spec:
   {{- end  }}
   {{- if .Values.podDisruptionBudget.maxUnavailable }}
   maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
+  # test
   {{- end  }}
   selector:
     matchLabels:
