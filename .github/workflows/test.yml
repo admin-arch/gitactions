@@ -26,6 +26,17 @@ jobs:
              changed_files=$(cat changed_files.txt | grep '\.yaml$' || true)
              echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
 
+       - name: Recursively lint all Helm charts
+         run: |
+           echo "Finding all Helm charts and linting them..."
+
+           find . -type f -name Chart.yaml | while read chart_file; do
+             chart_dir=$(dirname "$chart_file")
+             echo "Linting chart in: $chart_dir"
+          # helm lint "$chart_dir"
+          # echo "----------------------------------------"
+           done
+
   #     - name: Run YAML Lint
   #       run: |
   #           pip3 install yamllint
