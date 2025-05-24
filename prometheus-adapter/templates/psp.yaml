@@ -5,6 +5,7 @@ kind: PodSecurityPolicy
 metadata:
   name: {{ template "k8s-prometheus-adapter.fullname" . }}
   {{- with (merge .Values.customAnnotations .Values.psp.annotations) }}
+  # test
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
