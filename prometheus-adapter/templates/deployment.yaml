@@ -72,7 +72,6 @@ spec:
         {{- if .Values.extraArguments }}
         {{- toYaml .Values.extraArguments | trim | nindent 8 }}
         {{- end }}
-        # test
         ports:
         - containerPort: {{ .Values.listenPort }}
           name: https
