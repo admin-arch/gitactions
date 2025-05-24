@@ -81,6 +81,7 @@ data:
         matches: ^(.*)_seconds_total$
         as: ""
       metricsQuery: sum(rate(<<.Series>>{<<.LabelMatchers>>}[5m])) by (<<.GroupBy>>)
+      # test
 {{- end -}}
 {{- if .Values.rules.custom }}
 {{ toYaml .Values.rules.custom | indent 4 }}
