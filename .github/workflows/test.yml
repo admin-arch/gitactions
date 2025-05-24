@@ -1,0 +1,38 @@
+name: Validate Pull Request
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+   yamllint:
+       name: 'Validate Yamls Using Yamllint'
+       runs-on: ubuntu-latest
+       steps:
+       - name: 'Checkout'          
+         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+         with:
+             token: ${{ secrets.GH_TOKEN }}
+             fetch-depth: 0
+
+       - name: Get list of changed files
+         id: changed-files
+         run: |
+             # git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
+             git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
+             cat changed_files.txt
+             changed_files=$(cat changed_files.txt | grep '\.yaml$' || true)
+             echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
+
+  #     - name: Run YAML Lint
+  #       run: |
+  #           pip3 install yamllint
+  #           PATH=/home/ccloud/.local/bin:$PATH
+  #           yamllint -c .yamllint-config.yaml ${{ steps.changed-files.outputs.changed_files }}
+
+  #     - name: Run yamllint
+  #       uses: reviewdog/action-yamllint@v1
+  #       with:
+  #         github_token: ${{ secrets.GH_TOKEN }}
+  #         reporter: github-pr-review   # Change reporter.
+  #         yamllint_flags: "-c .yamllint-config.yaml ${{ steps.changed-files.outputs.changed_files }}"
