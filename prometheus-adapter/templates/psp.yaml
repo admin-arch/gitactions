@@ -28,6 +28,7 @@ spec:
       max: 65535
   seLinux:
     rule: RunAsAny
+  # test
   supplementalGroups:
     rule: RunAsAny
   volumes:
