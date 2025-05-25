@@ -21,6 +21,7 @@ rules:
     level: warning
   indentation:
     level: error
+    spaces: consistent
     indent-sequences: true
   line-length: disable
   truthy: disable
