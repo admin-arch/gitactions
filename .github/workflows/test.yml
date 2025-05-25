@@ -29,7 +29,7 @@ jobs:
            # grep -v "/templates" non-chart-yaml-dirs.txt > non-chart-yaml-tmp-dirs.txt
            # grep -v '^\.$' non-chart-yaml-tmp-dirs.txt > yaml.txt
            # grep -vE '^\.$|/templates' non-chart-yaml-dirs.txt > yaml.txt
-
+           find . -maxdepth 1 -type f -name "*.yaml" > yaml.txt
            echo "Found Helm charts in:"
            cat charts.txt
 
