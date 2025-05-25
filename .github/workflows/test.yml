@@ -41,7 +41,8 @@ jobs:
 
            while IFS= read -r dir; do
              echo "Linting YAML files in $dir"
-             yamllint "$dir"
+             yamllint -c .yamllint-config.yaml "$dir"
+             # yamllint "$dir"
              # docker run -e RUN_LOCAL=true -e VALIDATE_YAML=true -v "$(pwd)/$dir":"$dir" github/super-linter:latest
            done < yaml.txt
 
