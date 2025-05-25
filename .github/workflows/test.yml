@@ -49,14 +49,14 @@ jobs:
              # docker run -e RUN_LOCAL=true -e VALIDATE_YAML=true -v "$(pwd)/$dir":"$dir" github/super-linter:latest
            done < yaml.txt
 
-       # - name: Get list of changed files
-       #   id: changed-files
-       #   run: |
-       #       # git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
-       #       git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
-       #       cat changed_files.txt
-       #       changed_files=$(cat changed_files.txt | grep '\.yaml$' || true)
-       #       echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
+       - name: Get list of changed files
+         id: changed-files
+         run: |
+             # git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
+             git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
+             cat changed_files.txt
+             changed_files=$(cat changed_files.txt | grep '\.yaml$' || true)
+             echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
         
        # - name: Find Helm chart directories
        #   run: |
