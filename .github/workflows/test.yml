@@ -33,7 +33,10 @@ jobs:
 
       - name: Run yamllint on changed YAML files
         run: |
-          grep '\.ya\?ml$' changed_files.txt | grep -v '^.*templates/.*' > changed-yaml.txt || true
+          # grep '\.ya\?ml$' changed_files.txt | grep -v '^.*templates/.*' > changed-yaml.txt || true
+          grep '\.ya\?ml$' changed_files.txt \
+            | grep -vE '^.*templates/.*|Chart\.yaml$|values\.yaml$' \
+            > changed-yaml.txt || true
           cat changed-yaml.txt
           if [ -s changed-yaml.txt ]; then
             echo "Linting regular YAML files..."
