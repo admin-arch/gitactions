@@ -24,15 +24,15 @@ jobs:
 
            # Find all directories with ANY .yaml files
            # find . -type f -name "*.yaml" -exec dirname {} \; | sort -u > all-yaml-dirs.txt
-           find . -type f -name "*.yaml" -exec dirname {} \; | sort -u | grep -v '^\\.$' > all-yaml-dirs.txt
            # Subtract chart dirs from all yaml dirs to get non-chart yaml dirs
            grep -vxFf charts.txt all-yaml-dirs.txt > non-chart-yaml-dirs.txt
            grep -v "/templates" non-chart-yaml-dirs.txt > non-chart-yaml-tmp-dirs.txt
+           grep -v '^\\.$' non-chart-yaml-tmp-dirs.txt > yaml.txt
            echo "Found Helm charts in:"
            cat charts.txt
 
            echo "Found non-chart YAML directories:"
-           cat non-chart-yaml-tmp-dirs.txt
+           cat yaml.txt
 
        - name: Lint non-chart YAML files
          run: |
