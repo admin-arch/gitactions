@@ -25,21 +25,3 @@ jobs:
              cat changed_files.txt
              changed_files=$(cat changed_files.txt | grep '\.yaml$' || true)
              echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
-
-        - name: Find Helm chart directories
-        run: |
-          find . -type f -name "Chart.yaml" -exec dirname {} \; | sort -u > charts.txt
-          cat charts.txt
-
-  #     - name: Run YAML Lint
-  #       run: |
-  #           pip3 install yamllint
-  #           PATH=/home/ccloud/.local/bin:$PATH
-  #           yamllint -c .yamllint-config.yaml ${{ steps.changed-files.outputs.changed_files }}
-
-  #     - name: Run yamllint
-  #       uses: reviewdog/action-yamllint@v1
-  #       with:
-  #         github_token: ${{ secrets.GH_TOKEN }}
-  #         reporter: github-pr-review   # Change reporter.
-  #         yamllint_flags: "-c .yamllint-config.yaml ${{ steps.changed-files.outputs.changed_files }}"
