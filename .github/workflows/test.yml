@@ -36,11 +36,13 @@ jobs:
 
        - name: Lint non-chart YAML files
          run: |
-           pip install yamllint
+           # pip install yamllint
+           docker pull github/super-linter:latest
 
            while IFS= read -r dir; do
              echo "Linting YAML files in $dir"
-             yamllint "$dir"
+             # yamllint "$dir"
+             docker run -e RUN_LOCAL=true -e VALIDATE_YAML=true -v "$(pwd)/$dir":"$dir" github/super-linter:latest
            done < non-chart-yaml-tmp-dirs.txt
 
        # - name: Get list of changed files
