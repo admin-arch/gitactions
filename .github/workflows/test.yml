@@ -32,7 +32,7 @@ jobs:
            cat charts.txt
 
            echo "Found non-chart YAML directories:"
-           cat non-chart-yaml-dirs.txt
+           cat non-chart-yaml-tmp-dirs.txt
 
        # - name: Get list of changed files
        #   id: changed-files
