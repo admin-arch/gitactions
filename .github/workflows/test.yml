@@ -34,6 +34,7 @@ jobs:
            cat charts.txt
 
            echo "Found non-chart YAML directories:"
+           cat root-yaml.txt >> yaml.txt
            cat yaml.txt
            cat root-yaml.txt
        - name: Lint non-chart YAML files
