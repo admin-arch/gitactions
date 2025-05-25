@@ -41,7 +41,7 @@ jobs:
            while IFS= read -r dir; do
              echo "Linting YAML files in $dir"
              yamllint "$dir"
-           done < non-chart-yaml-tmp-dirs.tmp.txt
+           done < non-chart-yaml-tmp-dirs.txt
 
        # - name: Get list of changed files
        #   id: changed-files
