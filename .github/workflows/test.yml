@@ -27,7 +27,7 @@ jobs:
 
            # Subtract chart dirs from all yaml dirs to get non-chart yaml dirs
            grep -vxFf charts.txt all-yaml-dirs.txt > non-chart-yaml-dirs.txt
-
+           grep -v "/templates" non-chart-yaml-dirs.tmp.txt > non-chart-yaml-dirs.txt
            echo "Found Helm charts in:"
            cat charts.txt
 
