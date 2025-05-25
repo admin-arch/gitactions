@@ -56,7 +56,8 @@ jobs:
               echo "Rendering chart: $chart_dir"
               helm template "$chart_dir" > rendered.yaml || exit 1
               echo "Linting rendered chart output..."
-              yamllint -f github rendered.yaml || exit 1
+              # yamllint -f github rendered.yaml || exit 1
+              yamllint -c .yamllint-config.yaml rendered.yaml
             done < changed-charts.txt
           else
             echo "No Helm charts changed."
