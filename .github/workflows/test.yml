@@ -25,3 +25,8 @@ jobs:
              cat changed_files.txt
              changed_files=$(cat changed_files.txt | grep '\.yaml$' || true)
              echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
+        
+        - name: Find Helm chart directories
+        run: |
+          find . -type f -name "Chart.yaml" -exec dirname {} \; | sort -u > charts.txt
+          cat charts.txt
