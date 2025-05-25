@@ -31,6 +31,9 @@ jobs:
            echo "Found Helm charts in:"
            cat charts.txt
 
+           echo "Found non-chart YAML directories:"
+           cat yaml.txt
+
        - name: Lint non-chart YAML files
          run: |
            # pip install yamllint
