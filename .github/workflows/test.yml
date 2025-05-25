@@ -36,7 +36,8 @@ jobs:
           grep '\.ya\?ml$' changed_files.txt | grep -v '^.*templates/.*' > changed-yaml.txt || true
           if [ -s changed-yaml.txt ]; then
             echo "Linting regular YAML files..."
-            yamllint -f github $(cat changed-yaml.txt)
+            # yamllint -f github $(cat changed-yaml.txt)
+            yamllint -c .yamllint-config.yaml $(cat changed-yaml.txt)
           else
             echo "No regular YAML files to lint."
           fi
