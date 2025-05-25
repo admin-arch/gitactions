@@ -10,6 +10,7 @@ metadata:
   {{- end }}
   labels:
     {{- include "k8s-prometheus-adapter.labels" . | indent 4 }}
+#test
 spec:
   {{- if .Values.podDisruptionBudget.minAvailable }}
   minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
