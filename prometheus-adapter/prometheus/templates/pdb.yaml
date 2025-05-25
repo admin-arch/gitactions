@@ -7,6 +7,7 @@ metadata:
   namespace: {{ include "prometheus.namespace" . }}
   labels:
     {{- include "prometheus.server.labels" . | nindent 4 }}
+#test
 spec:
   selector:
     matchLabels:
