@@ -43,7 +43,7 @@ jobs:
              echo "Linting YAML files in $dir"
              yamllint "$dir"
              # docker run -e RUN_LOCAL=true -e VALIDATE_YAML=true -v "$(pwd)/$dir":"$dir" github/super-linter:latest
-           done < non-chart-yaml-tmp-dirs.txt
+           done < yaml.txt
 
        # - name: Get list of changed files
        #   id: changed-files
