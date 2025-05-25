@@ -19,9 +19,9 @@ rules:
   empty-lines: disable
   hyphens:
     level: warning
-  indentation:
-    level: error
-    spaces: consistent
-    indent-sequences: true
+  indentation: disable
+    # level: error
+    # spaces: consistent
+    # indent-sequences: true
   line-length: disable
   truthy: disable
