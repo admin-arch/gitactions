@@ -16,6 +16,7 @@ rules:
     resourceNames:
     - {{ template "prometheus.server.fullname" . }}
 {{- end }}
+#test
   - apiGroups:
       - ""
     resources:
