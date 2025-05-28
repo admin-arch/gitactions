@@ -75,8 +75,7 @@ jobs:
           else
             echo "No Helm charts changed."
           fi
-          
-      - name: Show current user and home directory
-        run: |
-          echo "User: $(whoami)"
-          echo "HOME: $HOME"
+      # - name: Show current user and home directory
+      #   run: |
+      #     echo "User: $(whoami)"
+      #     echo "HOME: $HOME"
