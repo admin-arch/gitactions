@@ -61,15 +61,21 @@ jobs:
               echo "Rendering chart: $chart_dir"
               helm lint "$chart_dir"
             done < changed-charts.txt
-          elif [ -s temp.txt ]; then
+          else
+            echo "No Helm charts changed."
+          fi
+
+      - name: Run helmlint for template/ file
+        run: |
+          if [ -s temp.txt ]; then
             while IFS= read -r chart_dir; do
-              echo "Rendering temp chart: $chart_dir"
+              echo "Rendering template chart: $chart_dir"
               helm lint "$chart_dir"
             done < temp.txt
           else
             echo "No Helm charts changed."
           fi
-
+          
       - name: Show current user and home directory
         run: |
           echo "User: $(whoami)"
