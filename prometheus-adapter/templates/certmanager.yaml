@@ -9,6 +9,7 @@ metadata:
   namespace: {{ include "k8s-prometheus-adapter.namespace" . }}
   {{- if .Values.customAnnotations }}
   annotations:
+# test
   {{- toYaml .Values.customAnnotations | nindent 4 }}
   {{- end }}
   labels:
