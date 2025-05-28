@@ -10,6 +10,7 @@ metadata:
   {{- end }}
   labels:
     {{- include "k8s-prometheus-adapter.labels" . | indent 4 }}
+#test
 data:
   config.yaml: |
 {{- if or .Values.rules.default .Values.rules.custom }}
