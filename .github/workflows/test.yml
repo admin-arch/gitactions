@@ -49,7 +49,7 @@ jobs:
       - name: Find changed Helm charts
         run: |
           # grep 'Chart.yaml' changed_files.txt | xargs -I{} dirname {} | sort -u > changed-charts.txt || true
-          grep -E '(Chart\.yaml|values\.yaml|templates/)' changed_files.txt | sed -E 's|/templates/.*||' | xargs -I{} dirname {} | sort -u > changed-charts.txt || true
+          grep -E '(Chart\.yaml|values\.yaml|templates/)' changed_files.txt | sed -E 's|/templates/.*||' | sort -u > changed-charts.txt || true
           echo "Detected Helm charts:"
           cat changed-charts.txt || echo "None found"
 
