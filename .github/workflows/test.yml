@@ -56,7 +56,7 @@ jobs:
 
       - name: Run helm template + yamllint
         run: |
-          if [ -s changed-charts.txt ]; then
+          # if [ -s changed-charts.txt ]; then
             while IFS= read -r chart_dir; do
               echo "Rendering chart: $chart_dir"
               # helm template "$chart_dir" > rendered.yaml || exit 1
@@ -64,7 +64,7 @@ jobs:
               # yamllint -f github rendered.yaml || exit 1
               # yamllint -c .yamllint-config.yaml rendered.yaml
               helm lint "$chart_dir"
-            done < changed-charts.txt
+            done < changed-charts.txt temp.txt
           else
             echo "No Helm charts changed."
           fi
