@@ -11,6 +11,7 @@ metadata:
 {{- if .Values.server.statefulSet.headless.labels }}
 {{ toYaml .Values.server.statefulSet.headless.labels | indent 4 }}
 {{- end }}
+#test
   name: {{ template "prometheus.server.fullname" . }}-headless
   namespace: {{ include "prometheus.namespace" . }}
 spec:
