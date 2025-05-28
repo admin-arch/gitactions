@@ -65,7 +65,7 @@ jobs:
             while IFS= read -r chart_dir; do
               echo "Rendering temp chart: $chart_dir"
               helm lint "$chart_dir"
-            done < temp.txt          
+            done < temp.txt
           else
             echo "No Helm charts changed."
           fi
