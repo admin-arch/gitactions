@@ -48,6 +48,8 @@ rules:
     indent-sequences: true
     check-multi-line-strings: false
   key-duplicates: enable
+  syntax:
+    level: warning
   line-length:
     level: warning
     max: 80
