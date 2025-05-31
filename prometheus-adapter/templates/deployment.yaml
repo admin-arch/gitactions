@@ -10,6 +10,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
     {{- end }}
   {{- end }}
+  # test
   labels:
     {{- include "k8s-prometheus-adapter.labels" . | indent 4 }}
   name: {{ template "k8s-prometheus-adapter.fullname" . }}
