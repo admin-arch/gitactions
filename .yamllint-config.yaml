@@ -25,9 +25,3 @@ rules:
     indent-sequences: true
   line-length: disable
   truthy: disable
-
-ignore: |
-  # Ignore specific files
-  # services/kyverno/source/service/**
-  **/templates/**
-  # .github/workflows/
