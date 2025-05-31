@@ -57,3 +57,7 @@ rules:
   new-lines:
     type: unix
   trailing-spaces: disable
+
+ignore: |
+  # Ignore specific files
+  **/templates/**
