@@ -29,5 +29,5 @@ rules:
 ignore: |
   # Ignore specific files
   # services/kyverno/source/service/**
-  **/templates/**
+  **/templates/*.yaml
   # .github/workflows/
