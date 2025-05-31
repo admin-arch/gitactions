@@ -4,7 +4,7 @@ version: 4.14.1
 appVersion: v0.12.0
 description: A Helm chart for k8s prometheus adapter
 home: https://github.com/kubernetes-sigs/prometheus-adapter
-#testing
+#test
 keywords:
   - hpa
   - metrics
