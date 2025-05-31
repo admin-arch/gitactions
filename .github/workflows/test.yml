@@ -40,7 +40,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           # VALIDATE_JAVASCRIPT_ES: true
           # VALIDATE_PYTHON_BLACK: true
-          FILTER_REGEX_INCLUDE: ${{ env.FILTER_REGEX_INCLUDE }}
+          # FILTER_REGEX_INCLUDE: ${{ env.FILTER_REGEX_INCLUDE }}
           VALIDATE_YAML: true
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     
