@@ -22,26 +22,34 @@ jobs:
       - name: Install yamllint
         run: pip install yamllint
 
-      - name: Get changed files
-        id: changed
-        run: |
-          git fetch origin ${{ github.base_ref }}
-          # git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
-          git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
-          echo "Changed files:"
-          cat changed_files.txt
-          regex=$(sed 's/[][\\.^$*]/\\&/g' changed_files.txt | paste -sd '|' -)
-          echo "FILTER_REGEX_INCLUDE=$regex" >> $GITHUB_ENV
+      # - name: Get changed files
+      #   id: changed
+      #   run: |
+      #     git fetch origin ${{ github.base_ref }}
+      #     # git diff --name-only origin/${{ github.base_ref }}...HEAD > changed_files.txt
+      #     git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
+      #     echo "Changed files:"
+      #     cat changed_files.txt
+      #     regex=$(sed 's/[][\\.^$*]/\\&/g' changed_files.txt | paste -sd '|' -)
+      #     echo "FILTER_REGEX_INCLUDE=$regex" >> $GITHUB_ENV
+
+  #     - name: Get list of changed files
+  #       id: changed-files
+  #       run: |
+  #           # git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
+  #           git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
+  #           cat changed_files.txt
+  #           changed_files=$(cat changed_files.txt | grep '\.yaml$' || true)
+  #           echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
 
 
       - name: Lint Code Base
         uses: github/super-linter@v4
         env:
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: true
           # VALIDATE_JAVASCRIPT_ES: true
           # VALIDATE_PYTHON_BLACK: true
           # FILTER_REGEX_INCLUDE: ${{ env.FILTER_REGEX_INCLUDE }}
-          VALIDATE_YAML: true
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     
       # - name: Run yamllint on changed YAML files
