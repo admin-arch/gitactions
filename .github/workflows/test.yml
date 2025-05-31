@@ -30,13 +30,17 @@ jobs:
           git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
           echo "Changed files:"
           cat changed_files.txt
+          regex=$(sed 's/[][\\.^$*]/\\&/g' changed_files.txt | paste -sd '|' -)
+          echo "FILTER_REGEX_INCLUDE=$regex" >> $GITHUB_ENV
+
 
       - name: Lint Code Base
         uses: github/super-linter@v4
         env:
-          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_ALL_CODEBASE: false
           # VALIDATE_JAVASCRIPT_ES: true
           # VALIDATE_PYTHON_BLACK: true
+          FILTER_REGEX_INCLUDE: ${{ env.FILTER_REGEX_INCLUDE }}
           VALIDATE_YAML: true
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     
