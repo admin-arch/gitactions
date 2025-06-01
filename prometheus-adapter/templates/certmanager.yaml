@@ -2,7 +2,7 @@
 ---
 # Create a selfsigned Issuer, in order to create a root CA certificate for
 # signing webhook serving certificates
-# testing
+# test
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
@@ -10,7 +10,7 @@ metadata:
   namespace: {{ include "k8s-prometheus-adapter.namespace" . }}
   {{- if .Values.customAnnotations }}
   annotations:
-# test
+# testing
   {{- toYaml .Values.customAnnotations | nindent 4 }}
   {{- end }}
   labels:
