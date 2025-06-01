@@ -16,11 +16,22 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
 
-      - name: Set up Helm
-        uses: azure/setup-helm@v4
+      # - name: Set up Helm
+      #   uses: azure/setup-helm@v4
 
-      - name: Install yamllint
-        run: pip install yamllint
+      - name: Get list of changed files
+        id: changed-files
+        run: |
+            # git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }}
+            git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
+            cat changed_files.txt
+            changed_files=$(cat changed_files.txt | grep '\.yaml$' || true)
+            echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
+
+      - name: Run YAML Lint
+        run: |
+            pip3 install yamllint
+            yamllint -c .yamllint-config.yaml ${{ steps.changed-files.outputs.changed_files }}
 
       # - name: Get changed files
       #   id: changed
@@ -43,14 +54,14 @@ jobs:
   #           echo "::set-output name=changed_files::$(echo $changed_files | tr '\n' ' ')"
 
 
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: true
-          VALIDATE_YAML: true
-          # VALIDATE_PYTHON_BLACK: true
-          # FILTER_REGEX_INCLUDE: ${{ env.FILTER_REGEX_INCLUDE }}
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      # - name: Lint Code Base
+      #   uses: github/super-linter@v4
+      #   env:
+      #     VALIDATE_ALL_CODEBASE: true
+      #     VALIDATE_YAML: true
+      #     # VALIDATE_PYTHON_BLACK: true
+      #     # FILTER_REGEX_INCLUDE: ${{ env.FILTER_REGEX_INCLUDE }}
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     
       # - name: Run yamllint on changed YAML files
       #   run: |
