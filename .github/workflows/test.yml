@@ -33,6 +33,24 @@ jobs:
             pip3 install yamllint
             yamllint -c .yamllint-config.yaml ${{ steps.changed-files.outputs.changed_files }}
 
+      - name: Run helm lint on charts with modified templates
+        run: |
+          echo "${{ steps.changed-files.outputs.changed_files }}" | tr ' ' '\n' \
+            | grep 'templates/' \
+            | cut -d '/' -f1-2 \
+            | sort -u \
+            | while read chart_dir; do
+                if [ -d "$chart_dir" ]; then
+                  echo "Running helm lint on: $chart_dir"
+                  helm lint "$chart_dir"
+                else
+                  echo "Directory $chart_dir does not exist. Skipping."
+                fi
+              done
+
+
+
+
       # - name: Get changed files
       #   id: changed
       #   run: |
