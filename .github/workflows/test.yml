@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "${{ steps.changed-files.outputs.changed_files }}" | tr ' ' '\n' \
             | grep 'templates/' \
-            | cut -d '/' -f1-2 \
+            | sed 's#/templates/.*##' \
             | sort -u \
             | while read chart_dir; do
                 if [ -d "$chart_dir" ]; then
