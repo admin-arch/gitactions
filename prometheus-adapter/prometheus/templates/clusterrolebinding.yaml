@@ -1,6 +1,7 @@
 {{- if and .Values.rbac.create (empty .Values.server.namespaces) (empty .Values.server.useExistingClusterRoleName) -}}
 apiVersion: {{ template "rbac.apiVersion" . }}
 kind: ClusterRoleBinding
+#test
 metadata:
   labels:
     {{- include "prometheus.server.labels" . | nindent 4 }}
