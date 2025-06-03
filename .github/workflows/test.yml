@@ -37,12 +37,12 @@ jobs:
         run: |
           echo "${{ steps.changed-files.outputs.changed_files }}" | tr ' ' '\n' \
             | grep 'templates/' \
-            | cut -d '/' -f1-2 \
+            | sed 's#/templates/.*##' \
             | sort -u \
             | while read chart_dir; do
                 if [ -d "$chart_dir" ]; then
                   echo "Running helm lint on: $chart_dir"
-                  helm lint "$chart_dir"
+                  helm lint "$chart_dir" -f values/ko-kr/values.yaml
                 else
                   echo "Directory $chart_dir does not exist. Skipping."
                 fi
