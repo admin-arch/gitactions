@@ -42,7 +42,7 @@ jobs:
             | while read chart_dir; do
                 if [ -d "$chart_dir" ]; then
                   echo "Running helm lint on: $chart_dir"
-                  helm lint "$chart_dir" -f values/ko-kr/values.yaml
+                  helm lint "$chart_dir"
                 else
                   echo "Directory $chart_dir does not exist. Skipping."
                 fi
