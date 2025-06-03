@@ -1,5 +1,6 @@
 {{- if not .Values.server.statefulSet.enabled -}}
 apiVersion: {{ template "prometheus.deployment.apiVersion" . }}
+#test
 kind: Deployment
 metadata:
 {{- if .Values.server.deploymentAnnotations }}
